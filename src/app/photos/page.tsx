@@ -7,15 +7,12 @@ export default async function PhotosPage() {
   const response = await getPhotos()
   const photos = (await response.json()) as Photo[]
 
-  console.log(response)
-  console.log(photos)
-
   return (
     <div className="grid grid-cols-3 place-items-center gap-4 p-6">
       {photos.map((photo) => (
         <div
           key={photo.id}
-          className="aspect-1 overflow-hidden hover:shadow-2xl transition-all duration-300">
+          className="rounded aspect-1 overflow-hidden hover:shadow-2xl transition-all duration-300">
           <Link href={`/photos/${photo.id}`}>
             <Image
               src={photo.download_url}
