@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchPosts } from "@/api/postsApi";
+import Link from "next/link";
 
 export default function PostListScrollMode() {
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +53,12 @@ export default function PostListScrollMode() {
         {data?.pages.map((page) =>
           page.map((post) => (
             <li key={post.id} className="rounded-lg border p-4">
-              <h3 className="font-semibold">{post.title}</h3>
+              <Link
+                className="text-lg font-semibold hover:text-blue-600"
+                href={`/posts/${post.id}`}
+              >
+                <h3>{post.title}</h3>
+              </Link>
               <p className="text-sm text-muted-foreground">{post.body}</p>
             </li>
           )),
